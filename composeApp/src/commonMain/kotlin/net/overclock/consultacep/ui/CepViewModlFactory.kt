@@ -2,8 +2,9 @@ package net.overclock.consultacep.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import br.edu.utfpr.consultacep.shared.data.repository.CepRepository
-import br.edu.utfpr.consultacep.shared.data.validator.CepValidator
+import net.overclock.consultacep.data.repository.CepRepository
+import net.overclock.consultacep.data.validator.CepValidator
+
 
 class CepViewModelFactory : ViewModelProvider.Factory {
 

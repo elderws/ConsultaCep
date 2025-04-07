@@ -1,13 +1,12 @@
 package net.overclock.consultacep.data.model
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 import net.overclock.consultacep.data.repository.CepRepository
 import net.overclock.consultacep.data.validator.CepValidator
-import kotlinx.coroutines.launch
 
 data class CepFormState(
     val isDataValid: Boolean = false,

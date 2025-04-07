@@ -1,4 +1,4 @@
-package br.edu.utfpr.consultacep
+package net.overclock.consultacep
 
 import android.os.Bundle
 import android.text.Editable
@@ -6,34 +6,34 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import br.edu.utfpr.consultacep.databinding.ActivityMainBinding
-import br.edu.utfpr.consultacep.shared.Greeting
-import br.edu.utfpr.consultacep.data.CepViewModel
-import br.edu.utfpr.consultacep.data.CepViewModelFactory
+import net.overclock.consultacep.Greeting
+import net.overclock.consultacep.ui.CepViewModel
+import net.overclock.consultacep.ui.CepViewModelFactory
 
 class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: CepViewModel
-    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
         Log.d("MainActivity", "Hello from shared module: ${Greeting().greet()}")
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        val editCep = binding.editCep
-        val btnBuscar = binding.btnBuscar
-        val progress = binding.progress
-        val txtCep = binding.txtCep
-        val txtLogradouro = binding.txtLogradouro
-        val txtBairro = binding.txtBairro
-        val txtLocalidade = binding.txtLocalidade
-        val txtUf = binding.txtUf
+        val editCep = findViewById<EditText>(R.id.editCep)
+        val btnBuscar = findViewById<Button>(R.id.btnBuscar)
+        val progress = findViewById<ProgressBar>(R.id.progress)
+        val txtCep = findViewById<TextView>(R.id.txtCep)
+        val txtLogradouro = findViewById<TextView>(R.id.txtLogradouro)
+        val txtBairro = findViewById<TextView>(R.id.txtBairro)
+        val txtLocalidade = findViewById<TextView>(R.id.txtLocalidade)
+        val txtUf = findViewById<TextView>(R.id.txtUf)
 
         viewModel = ViewModelProvider(this, CepViewModelFactory())[CepViewModel::class.java]
 
@@ -107,6 +107,7 @@ class MainActivity : AppCompatActivity() {
         btnBuscar.setOnClickListener {
             val cep = editCep.text.toString()
             viewModel.buscarCep(cep)
+            editCep.setText("")
         }
     }
 }
